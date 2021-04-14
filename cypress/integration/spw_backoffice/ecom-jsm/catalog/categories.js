@@ -15,7 +15,7 @@ describe("Test Catalog page", () => {
     if (this.currentTest.state === "failed") {
      cy.setCookie("shouldSkip", "true");
       //set cookie to skip tests for further specs
-    // Cypress.runner.stop();
+      //Cypress.runner.stop();
       //this will skip tests only for current spec
     }
   })
@@ -40,9 +40,9 @@ describe("Test Catalog page", () => {
     cy.get("#Level").should("exist")
     cy.get(".page-btn > button:nth-child(1)").should("exist")  // Reset button
     cy.get(".primary").should("exist")  // Filter button
-    cy.contains("Categorie List").should("exist")
-
+    
     // checl table header
+    cy.contains("Categorie List").should("exist")
     cy.get("table").contains("span", "Category Id");
     cy.get("table").contains("span", "Name");
     cy.get("table").contains("span", "Sort Order");
