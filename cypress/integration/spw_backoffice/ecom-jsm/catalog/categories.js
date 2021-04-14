@@ -20,7 +20,7 @@ describe("Test Catalog page", () => {
     }
   })
 
-  it("TC_C01 - Verify if Categories page display correctly ", () => {  
+  it.skip("TC_C01 - Verify if Categories page display correctly ", () => {  
     // check header
     cy.contains("Home").should("exist")
     cy.visit("http://159.138.231.186:3000/#/categories/list")
@@ -81,7 +81,7 @@ describe("Test Catalog page", () => {
 
   })
 
-  it.skip("TC_C03 - Verify if user can add new Categories correctly", () => { 
+  it("TC_C03 - Verify if user can add new Categories correctly", () => { 
     cy.contains("Home").should("exist")
     cy.visit("http://159.138.231.186:3000/#/categories/list")
     cy.contains("Categories").should("exist")
@@ -113,22 +113,20 @@ describe("Test Catalog page", () => {
   })
 
 
-  it.skip("TC_C04 - Verify if user can search Categories", () => { 
+  it("TC_C04 - Verify if user can search Categories after added", () => { 
     cy.contains("Home").should("exist")
     cy.visit("http://159.138.231.186:3000/#/categories/list")
     cy.contains("Categories").should("exist")
 
-    const moment= require("moment") 
-    const now24Time = moment().format("YYMMDD")
-    const categoryName = "Test_" + now24Time
-    
-    cy.get("#Name").type(categoryName)
+    cy.get("#Name").type("Test")
     cy.get(".primary").click()
-    cy.get("table").contains("td", categoryName);
+    cy.get("table").contains("td", "Test");
 
   })
 
-
+  /**
+  * Pre-condition: execute TC_03 first
+  */
   it.skip("TC_C05 - Verify if user can update Categories", () => { 
     cy.contains("Home").should("exist")
     cy.visit("http://159.138.231.186:3000/#/categories/list")
@@ -155,6 +153,9 @@ describe("Test Catalog page", () => {
 
   })
 
+  /**
+  * Pre-condition: execute TC_03 and TC_C05 first
+  */
   it.skip("TC_C06 - Verify if user can delete Categories", () => { 
     cy.contains("Home").should("exist")
     cy.visit("http://159.138.231.186:3000/#/categories/list")

@@ -4,13 +4,13 @@ export function Login() {
 
     describe("Homepage - Login", function () {
         cy.visit("http://159.138.231.186:3000/ ");
+        cy.wait(1000)
 
-
-        cy.get("body").then($body =>{
-            const content = $body.contents();
-            if (content.find(".ant-modal-content").length) {
-              cy.get("body > div:nth-child(8) > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div > div.ant-modal-confirm-btns > button)").click()
-            }
+        cy.get("body").then($body => { 
+          if ($body.text().includes("Session expired, please login again")) {
+            // do something
+            cy.get("div.ant-modal-confirm-btns > button").click()
+          }
         })
 
         cy.get("body").then($body =>{
